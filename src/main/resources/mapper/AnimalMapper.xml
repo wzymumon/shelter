@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--admin-->
+<mapper namespace="com.example.shelter.mapper.AnimalMapper">
+    <resultMap id="animalMap" type="com.example.shelter.model.Animal">
+        <result property="id" column="id"/>
+        <result property="num" column="num"/>
+        <result property="name" column="name"/>
+        <result property="species" column="species"/>
+        <result property="sex" column="sex"/>
+        <result property="age" column="age"/>
+        <result property="image" column="image"/>
+        <result property="shelter_id" column="shelter_id"/>
+    </resultMap>
+    <select id="selectAll" resultType="com.example.shelter.model.Animal">
+        SELECT
+	        *
+        FROM
+	        T_ANIMAL
+    </select>
+    <select id="getImgById" resultType="java.lang.Object">
+        SELECT
+            image
+        FROM
+            T_ANIMAL
+        WHERE
+            id =#{id}
+    </select>
+    <select id="deleteById">
+        DELETE FROM
+            T_ANIMAL
+        WHERE
+            id =#{id}
+    </select>
+</mapper>

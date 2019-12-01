@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--admin-->
+<mapper namespace="com.example.shelter.mapper.ShelterMapper">
+    <resultMap id="hospiceMap" type="com.example.shelter.model.Shelter">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="address" column="address"/>
+        <result property="postcode" column="postcode"/>
+        <result property="total_room" column="total_room"/>
+        <result property="remain_room" column="remain_room"/>
+        <result property="note" column="note"/>
+    </resultMap>
+    <!--    查询整个表-->
+    <select id="selectAll" resultType="com.example.shelter.model.Shelter">
+        SELECT
+	        *
+        FROM
+	        T_SHELTER
+    </select>
+    <select id="deleteById">
+        DELETE FROM
+            T_SHELTER
+        WHERE
+            id =#{id}
+    </select>
+    <select id="update">
+        UPDATE
+            T_SHELTER
+        SET
+            id=#{id},name=#{name},address=#{address},zip=#{zip},total_room=#{total_room},remain_room=#{remain_room},note=#{note}
+        WHERE
+            id=#{old_id}
+    </select>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.shelter.mapper.HealthMapper">
+    <resultMap id="healthMap" type="com.example.shelter.model.Health">
+        <result property="id" column="id"/>
+        <result property="animal_id" column="animal_id"/>
+        <result property="user_id" column="user_id"/>
+        <result property="information" column="information"/>
+        <result property="check_date" column="check_date"/>
+        <result property="note" column="note"/>
+    </resultMap>
+    <!--    查询整个表-->
+    <select id="selectAll" resultType="com.example.shelter.model.Health">
+        SELECT
+	        *
+        FROM
+	        T_HEALTH
+    </select>
+    <select id="deleteById">
+        DELETE FROM
+            T_HEALTH
+        WHERE
+            id =#{id}
+    </select>
+    <select id="update">
+        UPDATE
+            T_HEALTH
+        SET
+            id=#{id},animal_id=#{animal_id},user_id=#{user_id},information=#{information},note=#{note}
+        WHERE
+            id=#{old_id}
+    </select>
+</mapper>

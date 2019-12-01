@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/vendors/simple-line-icons/css/simple-line-icons.css}">
+    <link rel="stylesheet" th:href="@{/vendors/flag-icon-css/css/flag-icon.min.css}">
+    <link rel="stylesheet" th:href="@{/vendors/css/vendor.bundle.base.css}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" th:href="@{/vendors/daterangepicker/daterangepicker.css}">
+    <link rel="stylesheet" th:href="@{/vendors/chartist/chartist.min.css}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Vaccine Table</h4>
+            <a th:href="@{/vaccine/insert2}">Insert</a>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th type="hidden"></th>
+                    <th>ID</th>
+                    <th>A_id</th>
+                    <th>U_id</th>
+                    <th>Vaccine</th>
+                    <th>Date</th>
+                    <th>Remarks</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="vaccine:${vaccines}">
+                    <form action="/vaccine/update">
+                        <th><input type="hidden" name="old_id" th:value="${vaccine.getId()}"></th>
+                        <th><input style="background-color:transparent;border:0;" name="id"
+                                   th:value="${vaccine.getId()}"></th>
+                        <th><input style="background-color:transparent;border:0;" name="a_id"
+                                   th:value="${vaccine.getA_id()}"></th>
+                        <th><input style="background-color:transparent;border:0;" name="u_id"
+                                   th:value="${vaccine.getU_id()}"></th>
+                        <th><input style="background-color:transparent;border:0;" name="vaccine"
+                                   th:value="${vaccine.getVaccine()}"></th>
+                        <th><input style="background-color:transparent;border:0;" name="date"
+                                   th:value="${vaccine.getDate()}"></th>
+                        <th><input style="background-color:transparent;border:0;" name="remarks"
+                                   th:value="${vaccine.getRemarks()}"></th>
+                        <th><input type="submit" class="btn btn-primary" value="Update"></th>
+                        <th><a th:href="'/vaccine/delete?id='+${vaccine.getId()}">delete</a></th>
+                    </form>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

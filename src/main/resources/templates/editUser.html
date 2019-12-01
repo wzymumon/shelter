@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/vendors/simple-line-icons/css/simple-line-icons.css}">
+    <link rel="stylesheet" th:href="@{/vendors/flag-icon-css/css/flag-icon.min.css}">
+    <link rel="stylesheet" th:href="@{/vendors/css/vendor.bundle.base.css}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" th:href="@{/vendors/daterangepicker/daterangepicker.css}">
+    <link rel="stylesheet" th:href="@{/vendors/chartist/chartist.min.css}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">User Table</h4>
+            <a th:href="@{/user/insert2}">Insert</a>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th type="hidden"></th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>H_id</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user:${users}">
+                    <form action="/user/update">
+                        <th><input type="hidden" name="old_id" th:value="${user.getId()}"></th>
+                        <th><input style="background-color:transparent;border:0;" name="id" th:value="${user.getId()}"></th>
+                        <th><input style="background-color:transparent;border:0;" name="name" th:value="${user.getName()}"></th>
+                        <th><input style="background-color:transparent;border:0;" name="email" th:value="${user.getEmail()}"></th>
+                        <th><input style="background-color:transparent;border:0;" name="phone" th:value="${user.getPhone()}"></th>
+                        <th><input style="background-color:transparent;border:0;" name="h_id" th:value="${user.getH_id()}"></th>
+                        <th><input type="submit" class="btn btn-primary" value="Update"></th>
+                        <th><a th:href="'/user/delete?id='+${user.getId()}">delete</a></th>
+                    </form>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

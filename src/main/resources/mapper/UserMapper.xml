@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--admin-->
+<mapper namespace="com.example.shelter.mapper.UserMapper">
+    <resultMap id="userMap" type="com.example.shelter.model.User">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="shelter_id" column="shelter_id"/>
+    </resultMap>
+    <select id="selectAll" resultType="com.example.shelter.model.User">
+        SELECT
+            *
+        FROM
+            T_USER
+    </select>
+    <select id="getPassword" resultType="string">
+        SELECT
+	        password
+        FROM
+	        T_USER
+        WHERE
+	        name = #{name}
+    </select>
+    <select id="signUp">
+        INSERT INTO "T_USER" ( name, password, email, phone )
+        VALUES
+	    (
+		#{name},
+		#{password},
+        #{email},
+        #{phone})
+    </select>
+    <select id="deleteById">
+        DELETE FROM
+            T_USER
+        WHERE
+            id=#{id}
+    </select>
+</mapper>
